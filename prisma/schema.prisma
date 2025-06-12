@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Narrator {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  name      String
+  email     String     @unique
+  sessions  Session[]
+  campaigns Campaign[] // Um Narrator pode ter várias campanhas
+}
+
+model Session {
+  id            String              @id @default(cuid())
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  name          String
+  sessionDate   DateTime
+  durationInMin Int
+  notes         String?
+  aiSummary     String?
+  narratorId    String
+  narrator      Narrator            @relation(fields: [narratorId], references: [id])
+  plots         PlotSuggestion[]
+  encounters    EncounterTemplate[]
+}
+
+model PlotSuggestion {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  summary    String
+  fullPlot   String
+  isApproved Boolean  @default(false)
+  session    Session  @relation(fields: [sessionId], references: [id])
+  sessionId  String
+}
+
+model EncounterTemplate {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String
+  description String
+  difficulty  String
+  session     Session  @relation(fields: [sessionId], references: [id])
+  sessionId   String
+}
+
+model Campaign {
+  id         String   @id @default(cuid())
+  name       String
+  narrator   Narrator @relation(fields: [narratorId], references: [id])
+  narratorId String
+  createdAt  DateTime @default(now())
+}
