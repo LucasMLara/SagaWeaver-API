@@ -2,7 +2,7 @@ import { PlotSuggestionService } from '../../services/PlotSuggestionService';
 
 const plotSuggestionService = new PlotSuggestionService();
 
-export const plotSuggestionResolver = {
+const plotSuggestionResolver = {
     Mutation: {
         createPlotSuggestion: async (
             _parent: any,
@@ -16,3 +16,5 @@ export const plotSuggestionResolver = {
         },
     },
 };
+
+export default plotSuggestionResolver

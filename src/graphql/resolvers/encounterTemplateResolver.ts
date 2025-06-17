@@ -2,7 +2,7 @@ import { EncounterTemplateService } from '../../services/EncounterTemplateServic
 
 const encounterTemplateService = new EncounterTemplateService();
 
-export const encounterTemplateResolver = {
+const encounterTemplateResolver = {
     Mutation: {
         createEncounterTemplate: async (
             _parent: any,
@@ -17,3 +17,5 @@ export const encounterTemplateResolver = {
         },
     },
 };
+
+export default encounterTemplateResolver

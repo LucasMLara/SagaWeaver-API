@@ -2,7 +2,7 @@ import { SessionService } from '../../services/SessionService';
 
 const sessionService = new SessionService();
 
-export const sessionResolver = {
+const sessionResolver = {
     Query: {
         sessionsByNarrator: async (_parent: any, args: { narratorId: string }) => {
             return await sessionService.getSessionsByNarrator(args.narratorId);
@@ -17,6 +17,7 @@ export const sessionResolver = {
                 durationInMin: number;
                 notes?: string;
                 narratorId: string;
+                campaignId?: string;
             }
         ) => {
             return await sessionService.createSession(
@@ -24,8 +25,11 @@ export const sessionResolver = {
                 args.sessionDate,
                 args.durationInMin,
                 args.notes,
-                args.narratorId
+                args.narratorId,
+                args.campaignId
             );
         },
     },
 };
+
+export default sessionResolver;

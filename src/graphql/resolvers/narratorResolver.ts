@@ -2,7 +2,7 @@ import { NarratorService } from '../../services/NarratorService';
 
 const narratorService = new NarratorService();
 
-export const narratorResolver = {
+const narratorResolver = {
     Query: {
         narrators: async () => {
             return await narratorService.listNarrators();
@@ -14,3 +14,5 @@ export const narratorResolver = {
         },
     },
 };
+
+export default narratorResolver
