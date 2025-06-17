@@ -6,7 +6,8 @@ export class SessionRepository {
         sessionDate: string,
         durationInMin: number,
         notes: string | undefined,
-        narratorId: string
+        narratorId: string,
+        campaignId?: string
     ) {
         return await prisma.session.create({
             data: {
@@ -15,6 +16,7 @@ export class SessionRepository {
                 durationInMin,
                 notes,
                 narratorId,
+                campaignId
             },
         });
     }

@@ -48,6 +48,7 @@ export const typeDefs = gql`
     narrators: [Narrator!]!
     sessionsByNarrator(narratorId: ID!): [Session!]!
     campaignsByNarrator(narratorId: ID!): [Campaign!]!
+    campaignDetails(id: ID!): Campaign
   }
 
   type Mutation {
@@ -58,6 +59,7 @@ export const typeDefs = gql`
       durationInMin: Int!
       notes: String
       narratorId: ID!
+      campaignId: ID
     ): Session!
     createPlotSuggestion(
       summary: String!

@@ -14,4 +14,7 @@ export class CampaignService {
     async getCampaignsByNarrator(narratorId: string) {
         return await this.campaignRepository.listCampaignsByGameMaster(narratorId);
     }
+    async getCampaignDetails(id: string) {
+        return await this.campaignRepository.getCampaignDetails(id);
+    }
 }

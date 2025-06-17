@@ -8,14 +8,17 @@ export class SessionService {
         sessionDate: string,
         durationInMin: number,
         notes: string | undefined,
-        narratorId: string
+        narratorId: string,
+        campaignId?: string
+
     ) {
         return await this.sessionRepository.createSession(
             name,
             sessionDate,
             durationInMin,
             notes,
-            narratorId
+            narratorId,
+            campaignId
         );
     }
 
