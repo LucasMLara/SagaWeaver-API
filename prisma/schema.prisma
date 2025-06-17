@@ -28,6 +28,8 @@ model Session {
   aiSummary     String?
   narratorId    String
   narrator      Narrator            @relation(fields: [narratorId], references: [id])
+  campaignId    String?
+  campaign      Campaign?           @relation(fields: [campaignId], references: [id])
   plots         PlotSuggestion[]
   encounters    EncounterTemplate[]
 }
@@ -53,9 +55,10 @@ model EncounterTemplate {
 }
 
 model Campaign {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   name       String
-  narrator   Narrator @relation(fields: [narratorId], references: [id])
+  narrator   Narrator  @relation(fields: [narratorId], references: [id])
   narratorId String
-  createdAt  DateTime @default(now())
+  sessions   Session[]
+  createdAt  DateTime  @default(now())
 }
